@@ -1,34 +1,23 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import assetOne from "@/assets/inside/amoureux.png";
-import assetTwo from "@/assets/inside/danse.png";
-import assetThree from "@/assets/inside/deuil.png";
-import assetFour from "@/assets/inside/dino.png";
-import assetFive from "@/assets/inside/emménagement.png";
-import assetSix from "@/assets/inside/enretard.png";
-import assetSeven from "@/assets/inside/mémé.png";
-import assetEight from "@/assets/inside/ménage.png";
-import assetNine from "@/assets/inside/musclor.png";
-import assetTen from "@/assets/inside/porte.png";
+import { Dialog, DialogContent  } from "@/components/ui/dialog";
 
 const BuildingSection = () => {
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const images = [
-    assetOne.src,
-    assetTwo.src,
-    assetThree.src,
-    assetFour.src,
-    assetFive.src,
-    assetSix.src,
-    assetSeven.src,
-    assetEight.src,
-    assetNine.src,
-    assetTen.src,
-    assetNine.src,
-    assetTen.src,
+  const images = 
+  [
+    "/inside/amoureux.png",
+    "/inside/danse.png",
+    "/inside/deuil.png",
+    "/inside/dino.png",
+    "/inside/emménagement.png",
+    "/inside/enretard.png",
+    "/inside/mémé.png",
+    "/inside/ménage.png",
+    "/inside/musclor.png",
+    "/inside/porte.png",
   ];
 
   const openModal = (image: string) => {
