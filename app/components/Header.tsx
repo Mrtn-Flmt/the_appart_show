@@ -31,7 +31,8 @@ const Header: FC = () => {
 
   const menuItems = [
     { name: "Accueil", ref: "/" },
-    { name: "Contactez-nous", ref: "/contact" },
+    { name: "New", ref: "/new" },
+    { name: "Contact", ref: "/contact" },
   ];
 
   return (
@@ -45,10 +46,10 @@ const Header: FC = () => {
           <Button onClick={() => {
             window.location.href = "/";
           }} variant={"ghost"}  className="w-[60px] relative p-0 m-0 h-auto">
-            <StepForward size={40} />
+            <StepForward color="white" size={40} />
           </Button>
           <div
-            className={`logo text-xl font-bold text-black`}
+            className={`logo w-full flex justify-center text-xl font-bold text-white`}
           >
             🎶 THE APPART SHOW  🎶
           </div>
@@ -56,7 +57,7 @@ const Header: FC = () => {
 
         {/* Bouton Burger */}
         <button
-          className={`lg:hidden text-2xl focus:outline-none text-black`}
+          className={`lg:hidden text-2xl focus:outline-none text-white`}
           onClick={toggleMenu}
         >
           {isMenuOpen ? "✖" : "☰"}
@@ -79,7 +80,7 @@ const Header: FC = () => {
                 key={item.name}
                 href={item.ref}
                 className={`block font-semibold lg:inline-block text-sm px-8 py-2 lg:px-0 transition-colors duration-300 ${
-                  scrollPercentage > 0 || isMenuOpen ? "text-black" : "text-black"
+                  scrollPercentage > 0 || isMenuOpen ? "text-black" : "text-white"
                 } hover:text-orange-500 ${
                   isActive ? "text-orange-500" : ""
                 }`}

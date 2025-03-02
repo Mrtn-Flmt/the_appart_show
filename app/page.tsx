@@ -48,9 +48,6 @@ export default function Home() {
       <SectionImages imageOne={"/inside/emménagement.png"} imageTwo={"/inside/enretard.png"} />
       <SectionImages imageOne={"/inside/mémé.png"} imageTwo={"/inside/ménage.png"} />
       <SectionImages imageOne={"/inside/musclor.png"} imageTwo={"/inside/porte.png"} />
-      <div className="flex justify-center">
-        <div className="w-[600px] h-[1.5px] rounded-sm bg-black my-16"></div>
-      </div>
       <BuildingSection />
     </div>
   );

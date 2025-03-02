@@ -25,7 +25,7 @@ const FirstSectionVideo: React.FC<FirstSectionWithVideosProps> = ({
   playing,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  
+
   if (!video) {
     return null;
   }
@@ -73,17 +73,19 @@ const FirstSectionVideo: React.FC<FirstSectionWithVideosProps> = ({
             {title}
           </h2>
           {subTitle && (
-            <div className='w-full flex justify-center flex-col'><p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-              {subTitle}
+            <div className='w-full flex justify-center flex-col'>
+              <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+                {subTitle}
 
-            </p>
+              </p>
               <Button
                 className="bg-blue-500 text-white mt-4 px-4 py-2 rounded-lg shadow-lg hover:scale-105 transition flex items-center justify-center"
                 onClick={togglePlayPause}
                 aria-label={playing ? "Pause Music & Video" : "Play Music & Video"} // Accessibilité
               >
                 {playing ? <Pause size={24} /> : <Play size={24} />}
-              </Button></div>
+              </Button>
+            </div>
           )}
         </div>
       </div>
