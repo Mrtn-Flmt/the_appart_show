@@ -24,11 +24,12 @@ const FirstSectionVideo: React.FC<FirstSectionWithVideosProps> = ({
   setPlaying,
   playing,
 }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  
   if (!video) {
     return null;
   }
 
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const togglePlayPause = () => {
     if (setPlaying) {
