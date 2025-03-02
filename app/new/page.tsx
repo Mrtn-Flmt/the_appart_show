@@ -100,8 +100,8 @@ const Lucas = () => {
         {/* Barre de progression */}
         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-[80%] h-1 bg-white/20 rounded-full overflow-hidden">
           <div
-            className="h-full bg-white transition-all duration-500"
-            style={{ width: `${((currentIndex + 1) / images.length) * 100}%` }}
+            className="h-full bg-black transition-all duration-500"
+            style={{ width: `${((currentIndex) / images.length) * 100}%` }}
           ></div>
         </div>
       </div>
