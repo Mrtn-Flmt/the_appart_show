@@ -7,6 +7,7 @@ import Image from "next/image";
 
 const Lucas = () => {
   const images = [
+    "/inside/none.png",
     "/inside/amoureux.png",
     "/inside/none.png",
     "/inside/danse.png",
