@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Flex from "./Flex";
 import { FC } from "react";
 
 type SectionImagesProps = {

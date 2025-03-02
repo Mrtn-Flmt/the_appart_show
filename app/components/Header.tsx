@@ -32,7 +32,7 @@ const Header: FC = () => {
   const menuItems = [
     { name: "Accueil", ref: "/" },
     { name: "New", ref: "/new" },
-    { name: "Contact", ref: "/contact" },
+    { name: "Donner son avis", ref: "/avis" },
   ];
 
   return (
