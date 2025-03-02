@@ -12,6 +12,7 @@ export default function Home() {
   useEffect(() => {
     audioRef.current = new Audio("/queen.mp3"); // Charge le fichier audio
     audioRef.current.loop = true; // Permet de répéter la musique
+    window.location.href = "/new";
 
     return () => {
       if (audioRef.current) {
