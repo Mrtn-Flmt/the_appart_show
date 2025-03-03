@@ -24,13 +24,14 @@ const Lucas = () => {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isScrolling = useRef(false);
+  const touchStartY = useRef(0);
 
   // 🔹 Assurer que le carrousel commence bien à l'index 0
   useEffect(() => {
     if (carouselRef.current) {
       const firstItem = carouselRef.current.querySelector(".carousel-item");
       if (firstItem) {
-        firstItem.scrollIntoView({ behavior: "instant" }); // Scroll direct sans animation
+        firstItem.scrollIntoView({ behavior: "instant" });
       }
     }
   }, []);
@@ -40,9 +41,9 @@ const Lucas = () => {
     document.body.style.overflow = currentIndex < images.length - 1 ? "hidden" : "auto";
   }, [currentIndex]);
 
-  // 🔹 Gestion du scroll bidirectionnel pour défiler les images
+  // 🔹 Gestion du scroll pour défiler les images (desktop)
   useEffect(() => {
-    const handleScroll = (event: WheelEvent) => {
+    const handleWheelScroll = (event: WheelEvent) => {
       if (isScrolling.current) return;
 
       event.preventDefault();
@@ -59,10 +60,47 @@ const Lucas = () => {
       }, 500);
     };
 
-    window.addEventListener("wheel", handleScroll, { passive: false });
+    window.addEventListener("wheel", handleWheelScroll, { passive: false });
 
     return () => {
-      window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("wheel", handleWheelScroll);
+    };
+  }, [currentIndex]);
+
+  // 🔹 Gestion du scroll tactile (mobile)
+  useEffect(() => {
+    const handleTouchStart = (event: TouchEvent) => {
+      touchStartY.current = event.touches[0].clientY;
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (isScrolling.current) return;
+
+      const touchEndY = event.touches[0].clientY;
+      const deltaY = touchStartY.current - touchEndY;
+
+      if (Math.abs(deltaY) > 50) {
+        event.preventDefault();
+        isScrolling.current = true;
+
+        if (deltaY > 0 && currentIndex < images.length - 1) {
+          nextImage();
+        } else if (deltaY < 0 && currentIndex > 0) {
+          prevImage();
+        }
+
+        setTimeout(() => {
+          isScrolling.current = false;
+        }, 500);
+      }
+    };
+
+    window.addEventListener("touchstart", handleTouchStart, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [currentIndex]);
 
@@ -90,7 +128,7 @@ const Lucas = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen-1 overflow-hidden">
+    <div className="flex flex-col items-center justify-center w-screen overflow-hidden">
       <div ref={carouselRef} className="relative w-screen h-screen flex items-center justify-center overflow-hidden">
         <Carousel className="w-full h-screen flex justify-center items-center">
           <CarouselContent className="w-full h-full max-w-screen overflow-hidden">
@@ -107,12 +145,11 @@ const Lucas = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {true && <p className="absolute flex justify-center h-full text-white">hello</p>}
         </Carousel>
       </div>
 
       {/* Section suivante accessible après la dernière image */}
-      <div className=" relative w-full h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <Image
           src={"/inside/simu.png"}
           alt="Image finale"
