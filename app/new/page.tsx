@@ -223,6 +223,31 @@ const Lucas = () => {
       <div className="w-full h-3/4 flex flex-col items-center justify-center">
         <h1 className="text-xl font-bold mb-6">Nous sommes 3 étudiants :</h1>
         <div className="flex flex-row gap-6 items-center justify-center">
+          
+
+          {/* Étudiant 3 */}
+          <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
+            <div className="relative flex flex-col w-1/2 h-[100%]">
+              <Image
+                src={"/inside/lucas.png"}
+                alt="lucas"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="relative flex flex-col w-1/2 h-[100%] items-center gap-4">
+              <Image
+                src={"/inside/lucasName.png"}
+                alt="lucas"
+                width={100}
+                height={20}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
+              <p className="text-center">à l&apos;ESAC qui colorisé les illustrations</p>
+            </div>
+          </div>
+
           {/* Étudiant 1 */}
           <div className="flex flex-col items-center  w-[300px] h-[400px] rounded-lg p-4 gap-4">
             <div className="relative flex flex-col w-1/2 h-[100%]">
@@ -266,29 +291,6 @@ const Lucas = () => {
                 className="object-cover rounded-lg"
               />
               <p className="text-center">à l&apos;ESAC qui dessignent les illustrations</p>
-            </div>
-          </div>
-
-          {/* Étudiant 3 */}
-          <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
-            <div className="relative flex flex-col w-1/2 h-[100%]">
-              <Image
-                src={"/inside/lucas.png"}
-                alt="lucas"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-            <div className="relative flex flex-col w-1/2 h-[100%] items-center gap-4">
-              <Image
-                src={"/inside/lucasName.png"}
-                alt="lucas"
-                width={100}
-                height={20}
-                layout="cover"
-                className="object-cover rounded-lg"
-              />
-              <p className="text-center">à l&apos;ESAC qui colorisé les illustrations</p>
             </div>
           </div>
         </div>
