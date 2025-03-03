@@ -67,25 +67,36 @@ const Footer = () => {
               priority={true}
             />
           </div>
+          <div>
+            <Image
+              id="logo_vanish"
+              src={"https://1000logos.net/wp-content/uploads/2021/10/Batman-Logo.png"}
+              alt="Logo FLMTECH"
+              className="rounded-lg object-cover opacity-0 transition-opacity duration-300 hover:opacity-100 ml-4 bottom-0"
+              width={50}
+              height={50}
+              priority={true}
+            />
+          </div>
         </div>
 
         {/* Social Media Icons */}
         <div className="flex space-x-4 mt-4 lg:mt-0">
           <a
             href="#"
-            className="bg-gradient-to-r from-white to-gray-700 h-8 p-2 w-8 bg-gray-400 rounded-full flex items-center justify-center"
+            className="bg-gradient-to-r bg-white h-8 p-2 w-8 rounded-full flex items-center justify-center"
           >
             <Facebook />
           </a>
           <a
             href="#"
-            className="bg-gradient-to-r from-white to-gray-700 h-8 p-2 w-8 bg-gray-400 rounded-full flex items-center justify-center"
+            className="bg-gradient-to-r bg-white h-8 p-2 w-8 rounded-full flex items-center justify-center"
           >
             <Instagram />
           </a>
           <a
             href="#"
-            className="bg-gradient-to-r from-white to-gray-700 h-8 p-2 w-8 bg-gray-400 rounded-full flex items-center justify-center"
+            className="bg-gradient-to-r bg-white h-8 p-2 w-8 rounded-full flex items-center justify-center"
           >
             <Twitter />
           </a>

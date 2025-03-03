@@ -156,6 +156,9 @@ const Lucas = () => {
     }
   };
 
+  // Calcul de la progression de la barre
+  const progress = (currentIndex / (images.length - 1)) * 100;
+
   return (
     <div className="flex flex-col items-center justify-center w-screen overflow-hidden">
       <div ref={carouselRef} className="relative w-screen h-screen flex items-center justify-center overflow-hidden">
@@ -177,6 +180,13 @@ const Lucas = () => {
         </Carousel>
       </div>
 
+      {/* Barre de progression */}
+      <div className="w-4/5 rounded-3xl h-2 bg-gray-300 mt-4">
+        <div
+          style={{ width: `${progress}%` }}
+          className="h-full rounded-3xl bg-black transition-all"
+        />
+      </div>
 
       {/* Section suivante accessible après la dernière image */}
       <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
@@ -188,20 +198,20 @@ const Lucas = () => {
           className="object-contain transition-transform duration-700 ease-in-out"
         />
       </div>
+
       {/* Bouton Play/Pause Musique */}
       <button
-  onClick={toggleMusic}
-  className="absolute bottom-4 right-4 bg-gray-900 p-3 rounded-full shadow-lg  transition-all"
->
-  <Image
-    src={isPlaying ? "/inside/pause.png" : "/inside/play.png"}
-    alt={isPlaying ? "Pause" : "Play"}
-    width={50}
-    height={50}
-    className="object-contain"
-  />
-</button>
-
+        onClick={toggleMusic}
+        className="absolute bottom-4 right-4 bg-gray-900 p-3 rounded-full shadow-lg  transition-all"
+      >
+        <Image
+          src={isPlaying ? "/inside/pause.png" : "/inside/play.png"}
+          alt={isPlaying ? "Pause" : "Play"}
+          width={50}
+          height={50}
+          className="object-contain"
+        />
+      </button>
 
       <Divider />
 
@@ -223,8 +233,6 @@ const Lucas = () => {
       <div className="w-full h-3/4 flex flex-col items-center justify-center">
         <h1 className="text-xl font-bold mb-6">Nous sommes 3 étudiants :</h1>
         <div className="flex flex-row gap-6 items-center justify-center">
-          
-
           {/* Étudiant 3 */}
           <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
             <div className="relative flex flex-col w-1/2 h-[100%]">
@@ -295,9 +303,6 @@ const Lucas = () => {
           </div>
         </div>
       </div>
-
-
-
     </div>
   );
 };

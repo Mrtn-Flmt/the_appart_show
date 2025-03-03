@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ["1000logos.net"], // 🔹 Autoriser ce domaine externe
+  },
 };
 
 export default nextConfig;
