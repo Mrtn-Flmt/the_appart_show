@@ -242,7 +242,7 @@ const Lucas = () => {
                 layout="cover"
                 className="object-cover rounded-lg"
               />
-              <p className="text-center">à l&apos;ESAC qui dessignent les illustrations</p>
+              <p className="text-center">à Epitech, qui a développé le site</p>
             </div>
           </div>
 
