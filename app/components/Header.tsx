@@ -31,10 +31,8 @@ const Header: FC = () => {
 
   const menuItems = [
     { name: "Accueil", ref: "/" },
-    { name: "de", ref: "/de" },
-    { name: "det", ref: "/det" },
-    { name: "defutur", ref: "/defutur" },
-    { name: "denew", ref: "/denew" },
+    { name: "jeudedes", ref: "/jeudedes" },
+    { name: "jeudedes", ref: "/jeudedest" },
   ];
 
   return (
