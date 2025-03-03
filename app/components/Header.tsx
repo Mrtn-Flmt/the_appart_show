@@ -31,13 +31,15 @@ const Header: FC = () => {
 
   const menuItems = [
     { name: "Accueil", ref: "/" },
-    { name: "New", ref: "/new" },
-    { name: "Donner son avis", ref: "/avis" },
+    { name: "de", ref: "/de" },
+    { name: "det", ref: "/det" },
+    { name: "defutur", ref: "/defutur" },
+    { name: "denew", ref: "/denew" },
   ];
 
   return (
     <header
-      className={`header fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
+      className={`header bg-black fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
         scrollPercentage > 0 ? "scrolled" : ""
       }`}
     >

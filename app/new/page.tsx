@@ -213,6 +213,19 @@ const Lucas = () => {
         />
       </button>
 
+      <div
+        onClick={toggleMusic}
+        className="absolute bottom-80 right-4 bg-gray-900 p-3 rounded-full shadow-lg  transition-all"
+      >
+        <Image
+          src={isPlaying ? "/inside/pause.png" : "/inside/play.png"}
+          alt={isPlaying ? "Pause" : "Play"}
+          width={50}
+          height={50}
+          className="object-contain"
+        />
+      </div>
+
       <Divider />
 
       <div className="w-full flex flex-col items-center justify-center">

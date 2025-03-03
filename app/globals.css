@@ -156,7 +156,8 @@ body {
   background-color: transparent;
   backdrop-filter: none;
   box-shadow: none;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+  background-color: black;
+  /* transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.3s ease; */
 }
 
 .header.scrolled {
