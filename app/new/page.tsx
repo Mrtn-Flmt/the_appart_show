@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Image from "next/image";
 
 const Lucas = () => {
@@ -20,101 +19,108 @@ const Lucas = () => {
     "/inside/ménage.png",
     "/inside/musclor.png",
     "/inside/porte.png",
-    "/inside/simu.png",
   ];
 
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const isScrolling = useRef(false);
 
+  // 🔹 Assurer que le carrousel commence bien à l'index 0
   useEffect(() => {
-    audioRef.current = new Audio("/queen.mp3");
-    audioRef.current.loop = true;
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
+    if (carouselRef.current) {
+      const firstItem = carouselRef.current.querySelector(".carousel-item");
+      if (firstItem) {
+        firstItem.scrollIntoView({ behavior: "instant" }); // Scroll direct sans animation
       }
-    };
+    }
   }, []);
 
+  // 🔹 Désactiver le scroll de la page tant que toutes les images ne sont pas vues
+  useEffect(() => {
+    document.body.style.overflow = currentIndex < images.length - 1 ? "hidden" : "auto";
+  }, [currentIndex]);
+
+  // 🔹 Gestion du scroll bidirectionnel pour défiler les images
+  useEffect(() => {
+    const handleScroll = (event: WheelEvent) => {
+      if (isScrolling.current) return;
+
+      event.preventDefault();
+      isScrolling.current = true;
+
+      if (event.deltaY > 0 && currentIndex < images.length - 1) {
+        nextImage();
+      } else if (event.deltaY < 0 && currentIndex > 0) {
+        prevImage();
+      }
+
+      setTimeout(() => {
+        isScrolling.current = false;
+      }, 500);
+    };
+
+    window.addEventListener("wheel", handleScroll, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+    };
+  }, [currentIndex]);
+
   const prevImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    if (currentIndex > 0) {
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+      scrollToImage(currentIndex - 1);
+    }
   };
 
   const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    if (currentIndex < images.length - 1) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+      scrollToImage(currentIndex + 1);
+    }
   };
 
-  const togglePlayPause = () => {
-    if (!audioRef.current || !videoRef.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-      videoRef.current.pause();
-    } else {
-      audioRef.current.play().catch((error) => console.log("Impossible de lire l'audio", error));
-      videoRef.current.play().catch((error) => console.log("Impossible de lire la vidéo", error));
+  const scrollToImage = (index: number) => {
+    if (carouselRef.current) {
+      const items = carouselRef.current.querySelectorAll(".carousel-item");
+      if (items[index]) {
+        items[index].scrollIntoView({ behavior: "smooth" });
+      }
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen w-screen overflow-hidden">
-      {/* Vidéo en arrière-plan */}
-      <video
-        ref={videoRef}
-        src="https://videos.pexels.com/video-files/9524079/9524079-hd_1920_1080_30fps.mp4"
-        playsInline
-        className="absolute inset-0 object-cover w-full h-full brightness-50"
-      />
-
-      {/* Conteneur image + navigation */}
-      <div className="relative w-[90%] max-w-lg md:max-w-3xl h-[700px] bg-white rounded-2xl shadow-xl overflow-hidden border border-white/30 flex items-center justify-center">
-        {/* Image avec effet zoom et transition fluide */}
-        <Image
-          src={images[currentIndex]}
-          alt={`Image ${currentIndex + 1}`}
-          className="w-full h-full object-contain transition-transform duration-700 ease-in-out scale-105 hover:scale-110"
-          layout="fill"
-        />
-
-        {/* Boutons de navigation */}
-        <Button
-          variant="ghost"
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black/30 hover:bg-black/60 p-3 rounded-full transition-all duration-300 backdrop-blur-lg shadow-lg"
-          onClick={prevImage}
-        >
-          <ChevronLeft size={36} />
-        </Button>
-
-        <Button
-          variant="ghost"
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black/30 hover:bg-black/60 p-3 rounded-full transition-all duration-300 backdrop-blur-lg shadow-lg"
-          onClick={nextImage}
-        >
-          <ChevronRight size={36} />
-        </Button>
-
-        {/* Barre de progression */}
-        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-[80%] h-1 bg-white/20 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-black transition-all duration-500"
-            style={{ width: `${((currentIndex) / images.length) * 100}%` }}
-          ></div>
-        </div>
+    <div className="flex flex-col items-center justify-center w-screen-1 overflow-hidden">
+      <div ref={carouselRef} className="relative w-screen h-screen flex items-center justify-center overflow-hidden">
+        <Carousel className="w-full h-screen flex justify-center items-center">
+          <CarouselContent className="w-full h-full max-w-screen overflow-hidden">
+            {images.map((src, index) => (
+              <CarouselItem key={index} className="carousel-item relative w-screen h-full flex items-center justify-center">
+                <div className="relative w-[75vw] h-[75vh] flex items-center justify-center">
+                  <Image
+                    src={src}
+                    alt={`Image ${index + 1}`}
+                    fill
+                    className="object-contain transition-transform duration-700 ease-in-out"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {true && <p className="absolute flex justify-center h-full text-white">hello</p>}
+        </Carousel>
       </div>
 
-      {/* Bouton Play/Pause flottant avec effet néon */}
-      <Button
-        className="absolute bottom-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border border-white/10 backdrop-blur-md"
-        onClick={togglePlayPause}
-        aria-label={isPlaying ? "Pause Music & Video" : "Play Music & Video"}
-      >
-        {isPlaying ? <Pause size={28} /> : <Play size={28} />}
-      </Button>
+      {/* Section suivante accessible après la dernière image */}
+      <div className=" relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <Image
+          src={"/inside/simu.png"}
+          alt="Image finale"
+          width={1000}
+          height={1000}
+          className="object-contain transition-transform duration-700 ease-in-out"
+        />
+      </div>
     </div>
   );
 };
