@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Image from "next/image";
+import Divider from "../components/divider";
+import LittleDivider from "../components/littleDivider";
 
 const Lucas = () => {
   const images = [
@@ -25,6 +27,33 @@ const Lucas = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const isScrolling = useRef(false);
   const touchStartY = useRef(0);
+
+  // Gestion de la musique
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("/queen.mp3");
+    audioRef.current.loop = true; // Boucle infinie
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch((error) => console.log("Impossible de lire l'audio", error));
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   // 🔹 Assurer que le carrousel commence bien à l'index 0
   useEffect(() => {
@@ -148,6 +177,7 @@ const Lucas = () => {
         </Carousel>
       </div>
 
+
       {/* Section suivante accessible après la dernière image */}
       <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <Image
@@ -158,6 +188,114 @@ const Lucas = () => {
           className="object-contain transition-transform duration-700 ease-in-out"
         />
       </div>
+      {/* Bouton Play/Pause Musique */}
+      <button
+  onClick={toggleMusic}
+  className="absolute bottom-4 right-4 bg-gray-900 p-3 rounded-full shadow-lg  transition-all"
+>
+  <Image
+    src={isPlaying ? "/inside/pause.png" : "/inside/play.png"}
+    alt={isPlaying ? "Pause" : "Play"}
+    width={50}
+    height={50}
+    className="object-contain"
+  />
+</button>
+
+
+      <Divider />
+
+      <div className="w-full flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold">The appart show</h1>
+        <LittleDivider />
+        <div className="relative flex flex-col w-2/3 h-[300px]">
+          <Image
+            src={"/inside/txt.png"}
+            alt="Martin"
+            fill
+            className="object-contain rounded-lg"
+          />
+        </div>
+      </div>
+
+      <Divider />
+
+      <div className="w-full h-3/4 flex flex-col items-center justify-center">
+        <h1 className="text-xl font-bold mb-6">Nous sommes 3 étudiants :</h1>
+        <div className="flex flex-row gap-6 items-center justify-center">
+          {/* Étudiant 1 */}
+          <div className="flex flex-col items-center  w-[300px] h-[400px] rounded-lg p-4 gap-4">
+            <div className="relative flex flex-col w-1/2 h-[100%]">
+              <Image
+                src={"/inside/martin.png"}
+                alt="Martin"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="relative flex flex-col w-1/2 h-[100%] items-center gap-4">
+              <Image
+                src={"/inside/martinName.png"}
+                alt="Martin"
+                width={100}
+                height={20}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
+              <p className="text-center">à l&apos;ESAC qui dessignent les illustrations</p>
+            </div>
+          </div>
+
+          {/* Étudiant 2 */}
+          <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
+            <div className="relative flex flex-col w-1/2 h-[100%]">
+              <Image
+                src={"/inside/ln.png"}
+                alt="Martin"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="relative flex flex-col w-1/2 h-[100%] items-center gap-4">
+              <Image
+                src={"/inside/lnName.png"}
+                alt="Martin"
+                width={100}
+                height={20}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
+              <p className="text-center">à l&apos;ESAC qui dessignent les illustrations</p>
+            </div>
+          </div>
+
+          {/* Étudiant 3 */}
+          <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
+            <div className="relative flex flex-col w-1/2 h-[100%]">
+              <Image
+                src={"/inside/lucas.png"}
+                alt="lucas"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="relative flex flex-col w-1/2 h-[100%] items-center gap-4">
+              <Image
+                src={"/inside/lucasName.png"}
+                alt="lucas"
+                width={100}
+                height={20}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
+              <p className="text-center">à l&apos;ESAC qui dessignent les illustrations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
   );
 };
