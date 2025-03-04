@@ -191,7 +191,7 @@ const Home = () => {
       </div>}
 
       {/* Section suivante accessible après la dernière image */}
-      <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+      <div className="relative h-screen mt-22 w-screen flex items-center justify-center overflow-hidden">
         <Image
           src={"/inside/simu.png"}
           alt="Image finale"
