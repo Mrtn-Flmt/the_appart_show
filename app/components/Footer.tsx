@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+
 import Link from "next/link";
 import monsieurbonheur from "@/assets/monsieurbonheur.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-10 mt-24 w-full">
+    <footer className="bg-white py-10 mt-24 w-full">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center px-4 lg:px-0 space-y-8 lg:space-y-0">
         <div className="flex items-center space-x-4">
            <Image
