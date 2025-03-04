@@ -10,14 +10,14 @@ const Footer = () => {
     <footer className="bg-white py-10 mt-24 w-full">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center px-4 lg:px-0 space-y-8 lg:space-y-0">
         <div className="flex items-center space-x-4">
-           <Image
-                    src={"/inside/theappartshow.png"}
-                    alt="Martin"
-                    width={200}
-                    height={40}
-                    layout="cover"
-                    className="object-cover rounded-lg"
-                  />
+          <Image
+            src={"/inside/theappartshow.png"}
+            alt="Martin"
+            width={200}
+            height={40}
+            layout="cover"
+            className="object-cover rounded-lg"
+          />
         </div>
 
       </div>
@@ -38,17 +38,6 @@ const Footer = () => {
               src={monsieurbonheur}
               alt="Logo FLMTECH"
               className="rounded-lg object-cover opacity-0 transition-opacity duration-300 hover:opacity-100 ml-4 bottom-0"
-              height={50}
-              priority={true}
-            />
-          </div>
-          <div>
-            <Image
-              id="logo_vanish"
-              src={"https://1000logos.net/wp-content/uploads/2021/10/Batman-Logo.png"}
-              alt="Logo FLMTECH"
-              className="rounded-lg object-cover opacity-0 transition-opacity duration-300 hover:opacity-100 ml-4 bottom-0"
-              width={50}
               height={50}
               priority={true}
             />
