@@ -8,18 +8,17 @@ import LittleDivider from "../components/littleDivider";
 
 const Lucas = () => {
   const images = [
-    "/inside/none.png",
-    "/inside/amoureux.png",
-    "/inside/none.png",
-    "/inside/danse.png",
     "/inside/deuil.png",
-    "/inside/dino.png",
-    "/inside/emménagement.png",
-    "/inside/enretard.png",
-    "/inside/mémé.png",
-    "/inside/none.png",
     "/inside/ménage.png",
+    "/inside/none.png",
+    "/inside/emménagement.png",
+    "/inside/mémé.png",
     "/inside/musclor.png",
+    "/inside/none2.png",
+    "/inside/danse.png",
+    "/inside/dino.png",
+    "/inside/enretard.png",
+    "/inside/amoureux.png",
     "/inside/porte.png",
   ];
 
@@ -189,12 +188,11 @@ const Lucas = () => {
       </div>
 
       {/* Section suivante accessible après la dernière image */}
-      <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative w-full h-[1500px] mt-42 flex items-center justify-center overflow-hidden">
         <Image
           src={"/inside/simu.png"}
           alt="Image finale"
-          width={1000}
-          height={1000}
+          fill
           className="object-contain transition-transform duration-700 ease-in-out"
         />
       </div>
@@ -215,10 +213,10 @@ const Lucas = () => {
 
       <div
         onClick={toggleMusic}
-        className="absolute bottom-80 right-4 bg-gray-900 p-3 rounded-full shadow-lg  transition-all"
+        className="absolute bottom-80 right-4 p-3"
       >
         <Image
-          src={isPlaying ? "/inside/pause.png" : "/inside/play.png"}
+          src={"/inside/scrolll.png"}
           alt={isPlaying ? "Pause" : "Play"}
           width={50}
           height={50}
@@ -229,7 +227,14 @@ const Lucas = () => {
       <Divider />
 
       <div className="w-full flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold">The appart show</h1>
+        <Image
+          src={"/inside/theappartshow.png"}
+          alt="Martin"
+          width={400}
+          height={40}
+          layout="cover"
+          className="object-cover rounded-lg"
+        />
         <LittleDivider />
         <div className="relative flex flex-col w-2/3 h-[300px]">
           <Image
@@ -244,9 +249,17 @@ const Lucas = () => {
       <Divider />
 
       <div className="w-full h-3/4 flex flex-col items-center justify-center">
-        <h1 className="text-xl font-bold mb-6">Nous sommes 3 étudiants :</h1>
-        <div className="flex flex-row gap-6 items-center justify-center">
-          {/* Étudiant 3 */}
+      <Image
+          src={"/inside/troisetudiants.png"}
+          alt="Martin"
+          width={400}
+          height={40}
+          layout="cover"
+          className="object-cover rounded-lg mb-24"
+        />
+        <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
+
+          {/* Étudiant 1 */}
           <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
             <div className="relative flex flex-col w-1/2 h-[100%]">
               <Image
@@ -265,11 +278,18 @@ const Lucas = () => {
                 layout="cover"
                 className="object-cover rounded-lg"
               />
-              <p className="text-center">à l&apos;ESAC qui colorisé les illustrations</p>
+                 <Image
+                src={"/inside/colorise.png"}
+                alt="Martin"
+                width={400}
+                height={40}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
             </div>
           </div>
 
-          {/* Étudiant 1 */}
+          {/* Étudiant 2 */}
           <div className="flex flex-col items-center  w-[300px] h-[400px] rounded-lg p-4 gap-4">
             <div className="relative flex flex-col w-1/2 h-[100%]">
               <Image
@@ -285,14 +305,21 @@ const Lucas = () => {
                 alt="Martin"
                 width={100}
                 height={20}
+                layout=""
+                className="object-cover rounded-lg"
+              />
+              <Image
+                src={"/inside/developpe.png"}
+                alt="Martin"
+                width={100}
+                height={200}
                 layout="cover"
                 className="object-cover rounded-lg"
               />
-              <p className="text-center">à Epitech, qui a développé le site</p>
             </div>
           </div>
 
-          {/* Étudiant 2 */}
+          {/* Étudiant 3 */}
           <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
             <div className="relative flex flex-col w-1/2 h-[100%]">
               <Image
@@ -311,7 +338,14 @@ const Lucas = () => {
                 layout="cover"
                 className="object-cover rounded-lg"
               />
-              <p className="text-center">à l&apos;ESAC qui dessignent les illustrations</p>
+              <Image
+                src={"/inside/dessine.png"}
+                alt="Martin"
+                width={400}
+                height={40}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
             </div>
           </div>
         </div>
