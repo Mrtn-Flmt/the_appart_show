@@ -183,7 +183,7 @@ const Home = () => {
       </div>
 
       {/* Barre de progression */}
-     {!showTitle && <div className="w-4/5 rounded-3xl h-2 bg-gray-300 mt-4">
+      {!showTitle && <div className="w-4/5 rounded-3xl h-2 bg-gray-300 mt-4">
         <div
           style={{ width: `${progress}%` }}
           className="h-full rounded-3xl bg-black transition-all"
@@ -199,7 +199,7 @@ const Home = () => {
           className="object-contain transition-transform duration-700 ease-in-out"
         />
       </div>
-      
+
 
       <div
         style={{
@@ -225,7 +225,7 @@ const Home = () => {
       </div>
 
       {/* Bouton Play/Pause Musique */}
-     {showTitle && <div
+      {showTitle && <div
         onClick={toggleMusic}
         className={`absolute bottom-5 w-[150px] h-[150px] right-5 p-3 mr-12 mb-24`}
       >
@@ -251,7 +251,7 @@ const Home = () => {
         />
       </button>
 
-     {!showTitle && <div
+      {!showTitle && <div
         onClick={toggleMusic}
         className="absolute bottom-80 right-4 p-3"
       >
@@ -289,7 +289,7 @@ const Home = () => {
       <Divider />
 
       <div className="w-full h-3/4 flex flex-col items-center justify-center">
-      <Image
+        <Image
           src={"/inside/troisetudiants.png"}
           alt="Martin"
           width={300}
@@ -305,7 +305,9 @@ const Home = () => {
               <Image
                 src={"/inside/lucas.png"}
                 alt="lucas"
-                fill
+                layout="cover"
+                width={200}
+                height={250}
                 className="object-cover rounded-lg"
               />
             </div>
@@ -318,7 +320,7 @@ const Home = () => {
                 layout="cover"
                 className="object-cover rounded-lg"
               />
-                 <Image
+              <Image
                 src={"/inside/colorise.png"}
                 alt="Martin"
                 width={400}
@@ -326,16 +328,36 @@ const Home = () => {
                 layout="cover"
                 className="object-cover rounded-lg"
               />
+              <Image
+                src={"/inside/contact_lucas.png"}
+                alt="lucas"
+                width={160}
+                height={250}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
+              <button onClick={() => window.open("https://www.instagram.com/lumos.graphisme/")}>
+                <Image
+                  src={"/inside/insta_lucas.png"}
+                  alt="Martin"
+                  width={110}
+                  height={40}
+                  layout="cover"
+                  className="object-cover rounded-lg"
+                />
+              </button>
             </div>
           </div>
 
           {/* Étudiant 2 */}
           <div className="flex flex-col items-center  w-[300px] h-[400px] rounded-lg p-4 gap-4">
-            <div className="relative flex flex-col w-1/2 h-[100%]">
+            <div className="relative flex flex-col w-1/2 h-[100%] justify-center items-center">
               <Image
                 src={"/inside/martin.png"}
                 alt="Martin"
-                fill
+                layout="cover"
+                width={120}
+                height={100}
                 className="object-cover rounded-lg"
               />
             </div>
@@ -356,16 +378,26 @@ const Home = () => {
                 layout="cover"
                 className="object-cover rounded-lg"
               />
+              <Image
+                src={"/inside/contact_martin.png"}
+                alt="Martin"
+                width={100}
+                height={200}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
             </div>
           </div>
 
           {/* Étudiant 3 */}
           <div className="flex flex-col items-center  w-[300px] h-[400px]  rounded-lg p-4 gap-4">
-            <div className="relative flex flex-col w-1/2 h-[100%]">
+            <div className="relative flex flex-col w-1/2 justify-center items-center h-[100%]">
               <Image
                 src={"/inside/ln.png"}
                 alt="Martin"
-                fill
+                layout="cover"
+                width={100}
+                height={100}
                 className="object-cover rounded-lg"
               />
             </div>
@@ -386,6 +418,24 @@ const Home = () => {
                 layout="cover"
                 className="object-cover rounded-lg"
               />
+              <Image
+                src={"/inside/contact_ln.png"}
+                alt="Martin"
+                width={110}
+                height={40}
+                layout="cover"
+                className="object-cover rounded-lg"
+              />
+              <button onClick={() => window.open("https://www.instagram.com/hell_laine_/", "_blank")}>
+                <Image
+                  src={"/inside/insta_ln.png"}
+                  alt="Martin"
+                  width={90}
+                  height={40}
+                  layout="cover"
+                  className="object-cover rounded-lg"
+                />
+              </button>
             </div>
           </div>
         </div>
